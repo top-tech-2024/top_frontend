@@ -1,0 +1,43 @@
+// Typography variables
+$font-main: "Nunito", sans-serif;
+$font-size-base: 18px;
+$line-height-base: 1.5;
+$text-color: #f8f3f3;
+$header-color: #3A3845;
+
+// Typography styles
+body {
+    font-family: $font-main;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    color: $text-color;
+  }
+  
+  h1, h2, h3{
+    font-weight: bold;
+  }
+
+  h4{
+    color: $header-color;
+  }
+  
+  h5, h6 {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  p {
+    margin-bottom: 1em;
+  }
+  
+  @keyframes text-fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

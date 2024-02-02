@@ -1,0 +1,17 @@
+@import '../../styles/theme.scss';
+
+.nav_memu{
+    position: absolute;
+    top:100%;
+    left: 0;
+    width: 200px;
+    background-color: $secondary-color;
+}
+
+.nav_menu_item{
+    padding: 0.5rem 1rem;
+    text-align: left;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}

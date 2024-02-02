@@ -1,0 +1,6 @@
+@import './typography'; 
+@import './theme';
+
+body{
+    @include theme;
+}
