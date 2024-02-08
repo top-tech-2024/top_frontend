@@ -2,13 +2,13 @@ import logo from './logo.svg';
 import './App.scss';
 import Router from './router.js';
 import { BrowserRouter, useLocation } from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar.js';
+import Navbar from './components/NavBar/Navbar.tsx';
 
 function App() {
   const ConditionalNavBar = () => {
     const location = useLocation();
     const showNavBar =['/'].includes(location.pathname);
-    return showNavBar ? <NavBar /> : null;
+    return showNavBar ? <Navbar /> : null;
   };
 
   return (
