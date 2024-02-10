@@ -1,0 +1,163 @@
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Typography,
+  Box,
+  Grid,
+  Button,
+  Container,
+  Theme,
+  Tooltip,
+} from "@mui/material";
+import RevealOnScroll from "../components/RevealOnScroll.tsx";
+import headerImage from "../assets/main-bg.jpg";
+import headerImage2 from "../assets/MC-B2.jpg";
+import { SxProps } from "@mui/system";
+import Aphrodite from "../assets/icons/APHRODITE.png";
+import Apollo from "../assets/icons/APOLLO.png";
+import Ares from "../assets/icons/ARES.png";
+import Arthemis from "../assets/icons/ARTHEMIS.png";
+import Athena from "../assets/icons/ATHENA.png";
+import Demeter from "../assets/icons/DEMETER.png";
+import Dionysus from "../assets/icons/DIONYSUS.png";
+import Hephaestus from "../assets/icons/HEPHAESTUS.png";
+import Hera from "../assets/icons/HERA.png";
+import Hermes from "../assets/icons/HERMES.png";
+import Poseidon from "../assets/icons/POSEIDON.png";
+import Zeus from "../assets/icons/ZEUS.png";
+
+const logoUrls = [
+  Aphrodite,
+  Apollo,
+  Ares,
+  Arthemis,
+  Athena,
+  Demeter,
+  Dionysus,
+  Hephaestus,
+  Hera,
+  Hermes,
+  Poseidon,
+  Zeus,
+];
+
+const HomePage: React.FC = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        width: "100%",
+        backgroundColor: "black",
+      }}
+    >
+      <Box
+        component="img"
+        sx={{
+          width: { xs: "60%", sm: "50%", md: "40%", lg: "30%" },
+          objectFit: "cover",
+          marginTop: "3rem",
+        }}
+        src={headerImage2}
+        alt="TOP Design"
+      />
+
+      <RevealOnScroll>
+        <Typography
+          variant="h1"
+          sx={{
+            color: "#855826",
+            width: "100%",
+            textAlign: "center",
+            fontFamily: "-moz-initial",
+            fontWeight: "bold",
+            letterSpacing: "0.1em",
+            textShadow: "3px 3px 1px #E6AC8B",
+            fontSize: ["300%", "450%", "550%", "600%"],
+            lineHeight: "1.5",
+          }}
+        >
+          SCSE TOP'24
+        </Typography>
+      </RevealOnScroll>
+
+      <RevealOnScroll>
+        <Typography
+          variant="h3"
+          sx={{
+            marginTop: "1.5rem",
+            color: "white",
+            textAlign: "center",
+            whiteSpace: "pre-line",
+            fontFamily: "monospace",
+            fontWeight: "bold",
+            textShadow: "2px 1px 1px #E6AC8B",
+            fontSize: ["150%", "200%", "250%", "300%"],
+            lineHeight: "2.5",
+          }}
+        >
+          12 GODS.{"\n"}24 TERRITORIES. {"\n"}1 CROWN.
+        </Typography>
+      </RevealOnScroll>
+      <RevealOnScroll>
+        <Button
+          variant="contained"
+          sx={{
+            mt: 3,
+            mb: 3,
+            width: "70%",
+            backgroundColor: "black",
+            border: "1px solid white",
+            fontFamily: "-moz-initial",
+            fontSize: { xs: "70%", sm: "100%", md: "120%", lg: "150%" },
+            "&:hover": {
+              transform: "scale(1.1)",
+              transition: "transform 0.5s",
+              backgroundColor: "black",
+              textShadow: "1px 1px 1px #E6AC8B",
+            },
+          }}
+        >
+          Let the war begin
+        </Button>
+      </RevealOnScroll>
+
+      <Grid
+        container
+        spacing={2}
+        width="90%"
+        sx={{
+          marginTop: 2,
+          display: "flex",
+          alignItems: "space-between",
+          marginBottom: "3rem",
+        }}
+      >
+        {logoUrls.map((url, index) => (
+          <Grid item xs={4} sm={3} lg={2} key={index}>
+            <RevealOnScroll>
+              <Box
+                component="img"
+                src={url}
+                alt="og logo"
+                sx={{
+                  width: "100%",
+                  objectFit: "cover",
+                  padding: "0.5rem",
+                  "&:hover": {
+                    transform: "scale(1.1)",
+                    transition: "transform 0.5s",
+                  },
+                }}
+              />
+            </RevealOnScroll>
+          </Grid>
+        ))}
+      </Grid>
+    </div>
+  );
+};
+
+export default HomePage;
