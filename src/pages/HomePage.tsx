@@ -51,6 +51,8 @@ const HomePage: React.FC = () => {
         height: "100%",
         width: "100%",
         backgroundColor: "black",
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),url(${headerImage})`,
+        backgroundSize: "cover",
       }}
     >
       <Box
@@ -59,6 +61,7 @@ const HomePage: React.FC = () => {
           width: { xs: "60%", sm: "50%", md: "40%", lg: "30%" },
           objectFit: "cover",
           marginTop: "3rem",
+          borderRadius: "50%",
         }}
         src={headerImage2}
         alt="TOP Design"
@@ -85,10 +88,10 @@ const HomePage: React.FC = () => {
 
       <RevealOnScroll>
         <Typography
-          variant="h3"
+          variant="h1"
           sx={{
             marginTop: "1.5rem",
-            color: "white",
+            color: "#FBE094",
             textAlign: "center",
             whiteSpace: "pre-line",
             fontFamily: "monospace",
@@ -96,6 +99,7 @@ const HomePage: React.FC = () => {
             textShadow: "2px 1px 1px #E6AC8B",
             fontSize: ["150%", "200%", "250%", "300%"],
             lineHeight: "2.5",
+            letterSpacing: "0.3rem",
           }}
         >
           12 GODS.{"\n"}24 TERRITORIES. {"\n"}1 CROWN.
@@ -138,20 +142,23 @@ const HomePage: React.FC = () => {
         {logoUrls.map((url, index) => (
           <Grid item xs={4} sm={3} lg={2} key={index}>
             <RevealOnScroll>
-              <Box
-                component="img"
-                src={url}
-                alt="og logo"
-                sx={{
-                  width: "100%",
-                  objectFit: "cover",
-                  padding: "0.5rem",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                    transition: "transform 0.5s",
-                  },
-                }}
-              />
+              <Tooltip title={url.split("/")[3].split(".")[0]}>
+                <Box
+                  component="img"
+                  src={url}
+                  alt="og logo"
+                  sx={{
+                    width: "100%",
+                    objectFit: "cover",
+                    padding: "0.5rem",
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                      transition: "transform 0.5s",
+                      borderRadius: "50%",
+                    },
+                  }}
+                />
+              </Tooltip>
             </RevealOnScroll>
           </Grid>
         ))}
