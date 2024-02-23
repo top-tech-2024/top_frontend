@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
       <Typography
         variant="body2"
         align="center"
-        sx={{ marginTop: 6, fontFamily: "revert", opacity: "0.5" }}
+        sx={{ marginTop: 5, fontFamily: "revert", opacity: "0.5" }}
       >
         Copyright © 2024 - NTU SCSE TOP
       </Typography>

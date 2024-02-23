@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -59,7 +60,7 @@ const Navbar: React.FC = () => {
   return (
     <AppBar
       position="fixed"
-      elevation={isTop ? 0 : 4}
+      elevation={isTop ? 0 : 1}
       sx={{
         backgroundColor: isTop ? "transparent" : "#212121",
         borderBottom: "1px solid #666666",
@@ -101,7 +102,15 @@ const Navbar: React.FC = () => {
           >
             {menuItems.map((page) => (
               <MenuItem key={page} onClick={handleCloseMenu}>
-                <Typography textAlign="center">{page}</Typography>
+                <Link
+                  to={`/${page.toLowerCase()}`}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                  }}
+                >
+                  {page}
+                </Link>
               </MenuItem>
             ))}
           </Menu>

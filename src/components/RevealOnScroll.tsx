@@ -36,7 +36,7 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, sx }) => {
     <div
       ref={containerRef}
       style={{
-        width: "70%",
+        width: "auto",
         opacity: isVisible ? 1 : 0,
         transition: "opacity 1.5s ease-in-out",
         marginBottom: "1rem",

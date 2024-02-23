@@ -111,7 +111,7 @@ const HomePage: React.FC = () => {
           sx={{
             mt: 3,
             mb: 3,
-            width: "70%",
+            width: "auto",
             backgroundColor: "black",
             border: "1px solid white",
             fontFamily: "-moz-initial",
@@ -148,7 +148,7 @@ const HomePage: React.FC = () => {
                   src={url}
                   alt="og logo"
                   sx={{
-                    width: "100%",
+                    width: "80%",
                     objectFit: "cover",
                     padding: "0.5rem",
                     "&:hover": {

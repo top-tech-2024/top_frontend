@@ -6,16 +6,16 @@ import Navbar from "./components/NavBar/Navbar.tsx";
 import Footer from "./components/Footer.tsx";
 
 function App() {
-  const ConditionalNavBar = () => {
-    const location = useLocation();
-    const showNavBar = ["/"].includes(location.pathname);
-    return showNavBar ? <Navbar /> : null;
-  };
+  // const ConditionalNavBar = () => {
+  //   const location = useLocation();
+  //   const showNavBar = ["/"].includes(location.pathname);
+  //   return showNavBar ? <Navbar /> : null;
+  // };
 
   return (
     <div className="App">
       <BrowserRouter>
-        <ConditionalNavBar />
+        <Navbar />
         <Router />
       </BrowserRouter>
       <Footer />
