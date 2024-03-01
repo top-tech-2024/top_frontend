@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.scss';
 import Router from './router.js';
 import { BrowserRouter, useLocation } from 'react-router-dom';
