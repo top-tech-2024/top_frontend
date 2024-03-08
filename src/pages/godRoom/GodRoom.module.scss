@@ -1,0 +1,528 @@
+.Holder{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    overflow-y:hidden;
+    display: flex;
+    //make children center
+    justify-content: center;
+    align-items: center;
+    .Backdrop{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        user-select: none;
+    }
+
+}
+
+.UserCount{
+    position:fixed;
+    left: 20px;
+    top: 100px;
+    color: white;
+
+}
+
+.ConversationHolder{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Message{
+        position: absolute;
+        width: fit-content;
+        height: fit-content;
+        object-fit: cover;
+        z-index: 100;
+        background-color: black;
+        color: white;
+        font-size: 20px;
+        top:0;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+        transform: rotateX(45deg) scale(0.7);
+        user-select: none;
+        &:nth-last-child(3){
+            top: 10%;
+            opacity: 0.6;
+            transform: rotateX(30deg) scale(0.8);
+        }
+        &:nth-last-child(2){
+            top: 30%;
+            opacity: 0.6;
+            transform: rotateX(15deg);
+            transform: rotateX(30deg) scale(0.9);
+        }
+        &:nth-last-child(1){
+            &.pass{
+                background-color: green;
+            }
+            &.fail{
+                background-color: red;
+            }
+            top: 50%;
+            opacity: 1;
+            transform: rotateX(0deg);
+            animation: appear 0.5s ease-in-out 0s forwards;
+            @keyframes appear {
+                0% {
+                    transform: translateY(100px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0px);
+                    opacity: 1;
+                }
+                
+            }
+        }
+        &.Player{
+            background-color: #fffff0;
+            color: black;
+        }
+        &.Deity{
+            background-color: #010101;
+            color: white;
+        }
+    }
+    .ConversationBackdrop{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        opacity: 0.4;
+        user-select: none;
+    }
+}
+
+.ChoiceHolder{
+    position: fixed;
+    top:70%;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .Choice{
+        .ResultCircle{
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 1000px;
+            background-color: #1a2b4d;
+            box-shadow: 0px 0px 10px 0px #117fab;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bolder;
+            user-select: none;
+            animation: appearBig 1s ease-in-out 0s forwards;
+            @keyframes appearBig {
+                0% {
+                    transform: scale(0.5);
+                    opacity: 0;
+                }
+                50%{
+                    transform: scale(1.5);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+        }
+        position: relative;
+        width: 100px;
+        height: fit-content;
+        word-break:normal;
+        object-fit: cover;
+        z-index: 100;
+        background-color: white;
+        margin-left: 50px;
+        margin-right: 50px;
+        padding: 10px;
+        transition: all 0.5s ease-in-out;
+        animation: appear 0.5s ease-in-out 0s forwards;
+        user-select: none;
+        &:hover{
+            cursor: pointer;
+            scale: 1.2;
+            background-color: #fffff0;
+        }
+        @keyframes appear {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+            
+        }
+    }
+    //change .choice on phone screen width
+    @media (max-width: 600px) {
+        .Choice{
+            width: 100px;
+            height: fit-content;
+            word-break:normal;
+            object-fit: cover;
+            z-index: 100;
+            background-color: white;
+            margin-left: 5px;
+            margin-right: 5px;
+            padding: 5px;
+            transition: all 0.5s ease-in-out;
+            animation: appear 0.5s ease-in-out 0s forwards;
+            user-select: none;
+            &:hover{
+                cursor: pointer;
+                scale: 1.2;
+                background-color: #fffff0;
+            }
+            @keyframes appear {
+                0% {
+                    transform: translateY(100px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0px);
+                    opacity: 1;
+                }
+                
+            }
+        }
+    }
+    
+}
+.ButtonTest{
+    z-index: 1000;
+}
+
+.Restart{
+    position: fixed;
+    top: 70vh;
+    right: 50vw;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    border-radius: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.5s ease-in-out;
+    animation: appear 0.5s ease-in-out 0s;
+    user-select: none;
+    &:hover{
+        cursor: pointer;
+        scale: 1.2;
+        animation: spin 1s ease-in-out 0s infinite forwards;
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+    }
+    @keyframes appear {
+        0% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 1;
+        }
+        
+    }
+}
+.Switcher{
+    position: fixed;
+    top: 90vh;
+    right: 50vw;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.5s ease-in-out;
+    animation: appear 0.5s ease-in-out 0s;
+    user-select: none;
+    &:hover{
+        cursor: pointer;
+        scale: 1.2;
+    }
+    @keyframes appear {
+        0% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 1;
+        }
+        
+    }
+}
+
+@media (max-width: 600px) {
+
+    .Holder{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        overflow-y:hidden;
+        display: flex;
+        //make children center
+        justify-content: center;
+        align-items: center;
+        .Backdrop{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            user-select: none;
+        }
+    
+    }
+    
+    .ConversationHolder{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        opacity: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .Message{
+            position: absolute;
+            width: fit-content;
+            height: fit-content;
+            object-fit: cover;
+            z-index: 100;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+            top:0;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+            transform: rotateX(45deg) scale(0.7);
+            user-select: none;
+            &:nth-last-child(3){
+                top: 5%;
+                opacity: 0.6;
+                transform: rotateX(30deg) scale(0.8);
+            }
+            &:nth-last-child(2){
+                top: 15%;
+                opacity: 0.6;
+                transform: rotateX(15deg);
+                transform: rotateX(30deg) scale(0.9);
+            }
+            &:nth-last-child(1){
+                &.pass{
+                    background-color: green;
+                }
+                &.fail{
+                    background-color: red;
+                }
+                top: 30%;
+                opacity: 1;
+                transform: rotateX(0deg);
+                animation: appear 0.5s ease-in-out 0s forwards;
+                @keyframes appear {
+                    0% {
+                        transform: translateY(100px);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateY(0px);
+                        opacity: 1;
+                    }
+                    
+                }
+            }
+            &.Player{
+                background-color: #fffff0;
+                color: black;
+            }
+            &.God{
+                background-color: #010101;
+                color: white;
+            }
+        }
+        .ConversationBackdrop{
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            opacity: 0.4;
+            user-select: none;
+        }
+    }
+    
+    .ChoiceHolder{
+        position: fixed;
+        top:50%;
+        font-size: 0.8rem;
+        width: 100vw;
+        height: 100vh;
+        opacity: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        .Choice{
+            position: relative;
+            width: 100px;
+            height: fit-content;
+            word-break:normal;
+            object-fit: cover;
+            z-index: 100;
+            background-color: white;
+            margin-left: 50px;
+            margin-right: 50px;
+            padding: 10px;
+            transition: all 0.5s ease-in-out;
+            animation: appear 0.5s ease-in-out 0s forwards;
+            user-select: none;
+            &:hover{
+                cursor: pointer;
+                scale: 1.2;
+                background-color: #fffff0;
+            }
+            @keyframes appear {
+                0% {
+                    transform: translateY(100px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0px);
+                    opacity: 1;
+                }
+                
+            }
+        }
+        //change .choice on phone screen width
+        @media (max-width: 600px) {
+            .Choice{
+                width: 100px;
+                height: fit-content;
+                word-break:normal;
+                object-fit: cover;
+                z-index: 100;
+                background-color: white;
+                margin-left: 5px;
+                margin-right: 5px;
+                padding: 5px;
+                transition: all 0.5s ease-in-out;
+                animation: appear 0.5s ease-in-out 0s forwards;
+                user-select: none;
+                &:hover{
+                    cursor: pointer;
+                    scale: 1.2;
+                    background-color: #fffff0;
+                }
+                @keyframes appear {
+                    0% {
+                        transform: translateY(100px);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateY(0px);
+                        opacity: 1;
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+    .ButtonTest{
+        z-index: 1000;
+    }
+    
+    .Restart{
+        position: fixed;
+        top: 50vh;
+        right: 50vw;
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 1000px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: all 0.5s ease-in-out;
+        animation: appear 0.5s ease-in-out 0s;
+        user-select: none;
+        &:hover{
+            cursor: pointer;
+            scale: 1.2;
+            animation: spin 1s ease-in-out 0s infinite forwards;
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(-360deg);
+                }
+            }
+        }
+        @keyframes appear {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+            
+        }
+    }
+    .Switcher{
+        position: fixed;
+        top: 70vh;
+        right: 50vw;
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: all 0.5s ease-in-out;
+        animation: appear 0.5s ease-in-out 0s;
+        user-select: none;
+        &:hover{
+            cursor: pointer;
+            scale: 1.2;
+        }
+        @keyframes appear {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+            
+        }
+    }
+    
+
+
+}
+

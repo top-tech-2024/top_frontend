@@ -1,0 +1,43 @@
+// CountdownCircle.scss
+
+.countdownCircle {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left:50px;
+    top:10px;
+    width: 100px;
+    height: 100px;
+  
+    .countdownSVG {
+      transform: rotate(-90deg);
+      circle {
+        fill: none;
+        stroke-width: 10;
+        stroke-linecap:square;
+      }
+      circle:first-child {
+        stroke: #fffff0;
+        opacity: 0.4;
+      }
+      circle:last-child {
+        stroke: #fffff0;
+        stroke-dasharray: 283; // Same as strokeDasharray in JSX
+        transition: all 0.1s linear;
+      }
+      &.Urgent circle:last-child{
+        stroke: red;
+      }
+    }
+  
+    .timeLeft {
+      position: absolute;
+      left: 0%;
+      font-size: 20px;
+      color: #fffff0;
+      //make thicker
+    font-weight: bolder;
+    }
+  }
+  

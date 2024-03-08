@@ -1,0 +1,101 @@
+.Holder{
+    position: fixed;
+    height: 350px;
+    width: 400px;
+    padding: 50px;
+    z-index: 10;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    animation: fall_in 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    @keyframes fall_in {
+        0% {
+            transform: translateY(-100vh);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+    .Form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: 80%;
+        border-radius: 10px;
+        opacity: 1.2;
+        z-index: 10;
+        animation: appear 4s cubic-bezier(0.075, 0.82, 0.165, 1);
+        opacity: 1;
+        @keyframes appear {
+        0% {
+           opacity: 0;;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+        .Input{
+            width: 300px;
+            height: 50px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            font-size: 20px;
+            .InputLabel{
+                min-width: 0px;
+            }
+            .InputBox{
+                width: 300px;
+            }
+            &:focus{
+                outline: none;
+            }
+        }
+        .Submit{
+            //center text
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            font-size: 20px;
+            background-color: #cbbdaa;
+            user-select: none;
+            cursor: pointer;
+            &:focus{
+                outline: none;
+            }
+            &:hover{
+                background-color: #b3a38f;
+            }
+        }
+        .Error{
+            color: red;
+            font-size: 15px;
+        }
+        
+    }
+    .Backdrop{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #cbbdaa;
+        z-index: -1;
+        opacity: 0.6;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .Holder{
+        max-width: 70%;
+    }
+}
