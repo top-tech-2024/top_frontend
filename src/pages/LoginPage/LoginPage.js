@@ -3,8 +3,7 @@ import { Button, TextField, Stack, FormControl, Box, createTheme, ThemeProvider 
 import '../../styles/styles.scss'
 import login_logo from '../../assets/icons/login_logo.svg';
 import SCSE_logo from '../../assets/icons/SCSE_logo.svg';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   components: {
@@ -34,9 +33,8 @@ const LoginPage = () => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-      <FormControl fullWidth='true'>
+      <FormControl fullWidth>
         <Stack
-          className="box-container"
           direction={'column'}
           alignItems={'center'}
           spacing={3}>
