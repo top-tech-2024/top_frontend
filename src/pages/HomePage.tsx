@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Typography,
   Box,
@@ -7,10 +7,13 @@ import {
   Container,
   Theme,
   Tooltip,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 import RevealOnScroll from "../components/RevealOnScroll.tsx";
+import TabsList from "../components/TabsList.tsx";
 import headerImage from "../assets/main-bg.jpg";
-import headerImage2 from "../assets/MC-B2.jpg";
+import headerImage2 from "..//assets/MC-B2.jpg";
 import { SxProps } from "@mui/system";
 import Aphrodite from "../assets/icons/APHRODITE.png";
 import Apollo from "../assets/icons/APOLLO.png";
@@ -41,6 +44,33 @@ const logoUrls = [
 ];
 
 const HomePage: React.FC = () => {
+  const [isLogin, setIsLogin] = React.useState(false);
+  const [alignment, setAlignment] = React.useState("CP");
+
+  // For tabs
+  const handleLogin = () => {
+    setIsLogin(true);
+  };
+
+  const roleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string
+  ) => {
+    if (newAlignment !== null && newAlignment !== alignment) {
+      setAlignment(newAlignment);
+    }
+  };
+
+  // Tabs for different roles
+  const roleTabs = {
+    Player: ["Leaderboard", "Games", "Clue"],
+    CGL: ["Register Player", "Book Facilities", "Leaderboard", "Clue"],
+    Proggie: ["Update Points", "Leaderboard"],
+    CP: ["Update Points", "Leaderboard", "Assign Clue"],
+  };
+
+  const currentRoleTabs = roleTabs[alignment];
+
   return (
     <div
       style={{
@@ -105,28 +135,53 @@ const HomePage: React.FC = () => {
           12 GODS.{"\n"}24 TERRITORIES. {"\n"}1 CROWN.
         </Typography>
       </RevealOnScroll>
-      <RevealOnScroll>
-        <Button
-          variant="contained"
-          sx={{
-            mt: 3,
-            mb: 3,
-            width: "auto",
-            backgroundColor: "black",
-            border: "1px solid white",
-            fontFamily: "-moz-initial",
-            fontSize: { xs: "70%", sm: "100%", md: "120%", lg: "150%" },
-            "&:hover": {
-              transform: "scale(1.1)",
-              transition: "transform 0.5s",
+
+      {!isLogin && (
+        <RevealOnScroll>
+          <Button
+            variant="contained"
+            onClick={handleLogin}
+            sx={{
+              mt: 3,
+              mb: 3,
+              width: "auto",
               backgroundColor: "black",
-              textShadow: "1px 1px 1px #E6AC8B",
-            },
-          }}
-        >
-          Let the war begin
-        </Button>
-      </RevealOnScroll>
+              border: "1px solid white",
+              fontFamily: "-moz-initial",
+              fontSize: { xs: "70%", sm: "100%", md: "120%", lg: "150%" },
+              "&:hover": {
+                transform: "scale(1.1)",
+                transition: "transform 0.5s",
+                backgroundColor: "black",
+                textShadow: "1px 1px 1px #E6AC8B",
+              },
+            }}
+          >
+            Let the war begin
+          </Button>
+        </RevealOnScroll>
+      )}
+
+      {isLogin && (
+        <>
+          <ToggleButtonGroup
+            value={alignment}
+            exclusive
+            onChange={roleChange}
+            sx={{
+              color: "black",
+              backgroundColor: "white",
+            }}
+          >
+            <ToggleButton value="Player">Player</ToggleButton>
+            <ToggleButton value="CGL">CGL</ToggleButton>
+            <ToggleButton value="Proggie">Proggie</ToggleButton>
+            <ToggleButton value="CP">CP</ToggleButton>
+          </ToggleButtonGroup>
+
+          <TabsList names={currentRoleTabs} />
+        </>
+      )}
 
       <Grid
         container

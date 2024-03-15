@@ -1,9 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Register from "./pages/RegisterPage/RegisterPage.js";
-import Login from "./pages/LoginPage/LoginPage.js";
 import HomePage from "./pages/HomePage.tsx";
 import GamesPage from "./pages/GamesPage.tsx";
+import LeaderboardPage from "./pages/LeaderboardPage.tsx";
 
 const router = () => {
   return (
@@ -11,9 +10,9 @@ const router = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+
         <Route path="/games" element={<GamesPage />} />
+        <Route path="/leaderboard" element={<LeaderboardPage />} />
       </Routes>
     </div>
   );
