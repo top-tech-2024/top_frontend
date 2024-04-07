@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { FormControl, InputLabel, Select, MenuItem, Box, createTheme, ThemeProvider, Typography, Button } from '@mui/material';
-import '../../styles/styles.scss'
+import headerImage from "../../assets/icons/main-bg.jpg";
 import { useNavigate } from 'react-router-dom';
-
-/* <Typography sx={{mt: 8}} variant='body1' fontSize='1.5rem' fontWeight={600}>How many players are you registering?</Typography> */
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 function importGodsImages(god) {
     let images = {};
@@ -49,16 +48,27 @@ const Register = () => {
     ));
 
     return (
-        <div>
-            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={2}>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+            backgroundColor: "black",
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),url(${headerImage})`,
+            backgroundSize: "cover",
+          }}>
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={2} sx={{mt: 7, mr: 3, ml: 3}}>
                 <ThemeProvider theme={godName}>
-                    <Typography sx={{mt: 5}} variant='h1' fontWeight={800} fontSize='3rem' letterSpacing='0.3rem' color='#865746b8'>APHRODITE</Typography>
+                    {/* Has to be dynamic and change according to the user's group */}
+                    <Typography sx={{mt: 5}} variant='h1' fontWeight={800} fontSize='3rem' letterSpacing='0.3rem' color='#f2e3cc'>APHRODITE</Typography>
                 </ThemeProvider>
                 <Box>
                     <img sx={{mt: -1}} src={god['Aphrodite.png']} alt="SCSE TOP'24"/>
                 </Box>
                 <Box width={'100%'}>
-                    <FormControl sx={{mt: 3, width: '65%'}}>
+                    <FormControl sx={{mt: 5, width: '85%'}}>
                         <InputLabel
                             id="numOfPlayersLabel"
                             sx={{
@@ -66,6 +76,7 @@ const Register = () => {
                                 fontWeight: 600,
                                 color: '#000000',
                                 fontSize: '1.2rem',
+                                paddingLeft: '0.5rem',
                                 '&.Mui-focused': {
                                     color: '#000000',
                                     fontWeight: 600,
@@ -108,13 +119,39 @@ const Register = () => {
                     </FormControl>
                 </Box>
             </Box>
-            <Box display="flex" mt={10} mr={3} sx={{ justifyContent: 'flex-end'}}>
-                <Button
-                    onClick={() => navigate()}
+            <Box display="flex" mt={5} mb={12} justifyContent='space-around' width={'100%'}>
+                {/* <NavigateNextIcon
+                    onClick={() => {
+                        if (num !== '') {
+                            navigate('./form', { state: {num} });
+                        }
+                    }}
                     variant="contained"
                     sx={{
+                        width: '40%',
                         borderRadius: '10px',
-                        px: '1rem',
+                        py: '0.7rem',
+                        textTransform: 'capitalize',
+                        fontSize: '22px',
+                        backgroundColor: '#f2e3cc',
+                        color: '#000000',
+                        fontFamily: 'Rubik',
+                        fontWeight: 600, 
+                    ':hover': {
+                        bgcolor: '#deb97dcf',
+                    },
+                    }}></NavigateNextIcon> */}
+                    <Button
+                    onClick={() => {
+                        if (num !== '') {
+                            navigate('./form', { state: {num} });
+                        }
+                    }}
+                    variant="contained"
+                    sx={{
+                        width: '30%',
+                        borderRadius: '10px',
+                        py: '0.7rem',
                         textTransform: 'capitalize',
                         fontSize: '22px',
                         backgroundColor: '#f2e3cc',
