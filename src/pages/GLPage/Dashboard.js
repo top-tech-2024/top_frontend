@@ -34,8 +34,6 @@ const Dashboard = () => {
   const location = useLocation();
   const data = location.state;
 
-  console.log(data.emails);
-
   return (
     <div style={{
       display: "flex",

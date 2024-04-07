@@ -3,6 +3,7 @@ import { Button, TextField, Stack, FormControl, Box, createTheme, ThemeProvider 
 import '../../styles/styles.scss'
 import login_logo from '../../assets/icons/login_logo.svg';
 import SCSE_logo from '../../assets/icons/SCSE_logo.svg';
+import headerImage from "../../assets/icons/main-bg.jpg";
 import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
@@ -31,7 +32,17 @@ const theme = createTheme({
 const LoginPage = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      backgroundColor: "black",
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),url(${headerImage})`,
+      backgroundSize: "cover",
+    }}>
       <ThemeProvider theme={theme}>
       <FormControl fullWidth>
         <Stack
