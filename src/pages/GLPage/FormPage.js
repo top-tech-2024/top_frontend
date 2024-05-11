@@ -258,6 +258,7 @@ const FormPage = () => {
                             fontSize: '1.2rem',
                             justifyContent: 'center',
                             textAlign: 'center',
+                            ml: '0.5rem',
                             '&.Mui-focused': {
                                 color: '#000000',
                                 fontWeight: 600,
@@ -265,7 +266,7 @@ const FormPage = () => {
                                 justifyContent: 'center',
                             },
                           }}>
-                          The facility has been successfully booked.
+                          The accounts have been successfully created.
                         </Typography>
                       </Box>
                       <Button

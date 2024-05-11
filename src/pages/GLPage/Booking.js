@@ -161,7 +161,7 @@ const Booking = () => {
                                 justifyContent: 'center',
                             },
                           }}>
-                          The accounts have been successfully created.
+                          The facility has been successfully booked.
                         </Typography>
                       </Box>
                       <Button
