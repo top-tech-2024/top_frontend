@@ -5,6 +5,7 @@ import Login from './pages/LoginPage/LoginPage.js'
 import Home from './pages/HomePage/HomePage.js'
 import Register from './pages/GLPage/Register.js'
 import FormPage from './pages/GLPage/FormPage.js'
+import Booking from './pages/GLPage/Booking.js'
 
 const router = () => {
   return (
@@ -14,6 +15,7 @@ const router = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/register" element={<Register />} />
             <Route path="/dashboard/register/form" element={<FormPage />} />
+            <Route path="/dashboard/booking" element={<Booking />} />
             <Route path="/login" element={<Login />} />
         </Routes>
     </div>

@@ -75,7 +75,7 @@ const Dashboard = () => {
               },
             }}>Register Players</Button>
               <Button
-                onClick={() => navigate('./login')}
+                onClick={() => navigate('./booking')}
                 variant="contained"
                 sx={{
                   borderRadius: '10px',
