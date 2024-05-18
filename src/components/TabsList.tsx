@@ -155,8 +155,20 @@ const TabsList: React.FC<TabsProps> = ({ names }) => {
                 paddingLeft: "1rem",
               }}
             >
-              <Typography variant="h6">{name}</Typography>
-              <Typography variant="caption">
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "poppins",
+                }}
+              >
+                {name}
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  fontFamily: "monospace",
+                }}
+              >
                 {tabDictionary[name][0].desc}
               </Typography>
             </div>

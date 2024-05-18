@@ -37,7 +37,7 @@ const GamesCard: React.FC<GamesCardProps> = ({
         </Typography>
 
         <Link
-          to="#"
+          to={`/map/${location}`}
           style={{
             marginTop: 4,
             fontSize: 10,

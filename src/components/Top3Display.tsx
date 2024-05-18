@@ -20,6 +20,27 @@ const Demo = styled(Box)(({}) => ({
   paddingBottom: "25px",
 }));
 
+const FirstBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "#E4C610",
+    color: "white",
+  },
+}));
+
+const SecondBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "silver",
+    color: "white",
+  },
+}));
+
+const ThirdBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "#cd7f32",
+    color: "white",
+  },
+}));
+
 const Top3Display: React.FC<Top3DisplayProps> = ({ position }) => {
   return (
     <Demo>
@@ -33,16 +54,16 @@ const Top3Display: React.FC<Top3DisplayProps> = ({ position }) => {
           marginTop: "5%",
         }}
       >
-        <Badge badgeContent={2} color="secondary" overlap="circular">
+        <SecondBadge badgeContent={2} overlap="circular">
           <Avatar
-            src={`../assets/icons/${position[1].og.toUpperCase()}.png`}
+            src={require(`../assets/icons/${position[1].og.toUpperCase()}.png`)}
             sx={{
               width: "10vw",
               height: "10vw",
               marginBottom: "10px",
             }}
           />
-        </Badge>
+        </SecondBadge>
         <Typography color="white" variant="body1">
           {position[1].og}
         </Typography>
@@ -60,16 +81,16 @@ const Top3Display: React.FC<Top3DisplayProps> = ({ position }) => {
           marginTop: 0,
         }}
       >
-        <Badge badgeContent={1} color="primary" overlap="circular">
+        <FirstBadge badgeContent={1} overlap="circular">
           <Avatar
-            src={`../assets/icons/${position[0].og.toUpperCase()}.png`}
+            src={require(`../assets/icons/${position[0].og.toUpperCase()}.png`)}
             sx={{
               width: "13vw",
               height: "13vw",
               marginBottom: "10px",
             }}
           />
-        </Badge>
+        </FirstBadge>
         <Typography color="white" variant="body1">
           {position[0].og}
         </Typography>
@@ -87,16 +108,16 @@ const Top3Display: React.FC<Top3DisplayProps> = ({ position }) => {
           marginTop: "5%",
         }}
       >
-        <Badge badgeContent={3} color="secondary" overlap="circular">
+        <ThirdBadge badgeContent={3} overlap="circular">
           <Avatar
-            src={`../assets/icons/${position[2].og.toUpperCase()}.png`}
+            src={require(`../assets/icons/${position[2].og.toUpperCase()}.png`)}
             sx={{
               width: "10vw",
               height: "10vw",
               marginBottom: "10px",
             }}
           />
-        </Badge>
+        </ThirdBadge>
         <Typography color="white" variant="body1">
           {position[2].og}
         </Typography>

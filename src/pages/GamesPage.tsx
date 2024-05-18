@@ -37,7 +37,7 @@ const GamesPage: React.FC = () => {
               <RevealOnScroll>
                 <GamesCard
                   name={`Game ${index + 1}`}
-                  location={`Location ${index + 1}`}
+                  location="The Arc"
                   description={`Description ${index + 1}`}
                 />
               </RevealOnScroll>

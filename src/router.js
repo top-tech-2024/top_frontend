@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
 import GamesPage from "./pages/GamesPage.tsx";
 import LeaderboardPage from "./pages/LeaderboardPage.tsx";
+import MapPage from "./pages/MapPage.tsx";
+import AddPointsPage from "./pages/AddPointsPage.tsx";
 
 const router = () => {
   return (
@@ -13,6 +15,9 @@ const router = () => {
 
         <Route path="/games" element={<GamesPage />} />
         <Route path="/leaderboard" element={<LeaderboardPage />} />
+        <Route path="/map" element={<MapPage />} />
+        <Route path="/map/:venue" element={<MapPage />} />
+        <Route path="/update-points" element={<AddPointsPage />} />
       </Routes>
     </div>
   );
