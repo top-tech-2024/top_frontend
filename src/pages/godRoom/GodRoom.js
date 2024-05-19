@@ -9,6 +9,7 @@ import CountdownCircle from '../../components/countdown/Countdown'
 
 const GodRoom = () => {
     const navigate = useNavigate()
+    const [backdropColor,setBackdropColor] = useState(0)
     const [notStarted,setNotStarted] = useState(false);
     const [messages, setMessages] = useState([
         
@@ -53,6 +54,7 @@ const GodRoom = () => {
     useEffect(()=>{
       const pathname = window.location.hash;
       const parts = pathname.split('/'); 
+      console.log(parts)
       const cipherText=parts.pop() || '';
       console.log(parts)
         const payload={
@@ -94,7 +96,12 @@ const GodRoom = () => {
                     setTotalTime(data.total_time);
                     setMessages(data.history);
                     setChoices(data.choices);
-                    if (data.status==='done') setDone(true);
+                    if (data.status==='done') {
+                      setDone(true);
+                      if (data.pass_fail===true) setBackdropColor(1);
+                      else if (data.pass_fail===false) setBackdropColor(2);
+                      else setBackdropColor(0);
+                    }
                     else setDone(false);
             }
             else if (data.type ==='room_not_started'){
@@ -119,9 +126,11 @@ const GodRoom = () => {
             else if (data.type==='next_room'){
               const next_room = data.next_room;
               if (data.next_room === 'home') navigate('/home');
-              else navigate('/god_room/'+next_room);
+              else navigate('/'+next_room);
               // force page refresh
-
+              if (data.pass_fail==='fail'){
+                toast.info('Failed to reveal the god')
+              }
               ws.current.close();
               window.location.reload();
             }
@@ -173,17 +182,19 @@ const GodRoom = () => {
           console.error("WebSocket is not open.");
         }
       };
-    
-    
-    const switchState = async () => {
-        navigate('/aphrodite_disguised')
-    }
+    useEffect(()=>{
+      if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+        sendMessage({
+          type:'check_state'
+      })
+      }
+    },[ws.current])
   return (
     <div className={style.Holder}>
         <CountdownCircle milliseconds={timeLeft} totalTime={totalTime} sendPing={sendPing} setChoices={{}}/>
         <h2 className={style.UserCount}>Users:{connectCount}</h2>
         <div className={style.ConversationHolder}>
-            <div className={style.ConversationBackdrop}/>
+            <div className={`${style.ConversationBackdrop} ${backdropColor===1 && style.Pass} ${backdropColor===2 && style.Fail}`}/>
             {messages.map((message, index) => {
                 return (
                     <div key={index} className={`${style.Message} ${style[message.role]}`}>
@@ -220,6 +231,9 @@ const GodRoom = () => {
               if (connectCount>1)sendMessage({
                     type:'start_room'
                 })
+              else{
+                toast.error('need at least 2 players in room')
+              }
 
             }}>
             <VscDebugStart  color='white' size={28} />

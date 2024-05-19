@@ -1,11 +1,9 @@
 import React from 'react'
-import style from './Admin.module.scss'
-import LoginForm from '../../components/loginform/LoginForm'
+import style from '../admin/Admin.module.scss';
 import axios from 'axios'
-import { toast } from 'react-toastify'
-import AdminForm from '../../components/adminform/AdminForm'
+import GameMasterForm from '../../components/gm/GameMasterForm'
 
-const Admin = () => {
+const GameMasterLogin = () => {
     const [serverUp,setServerUp] = React.useState(false)
   React.useEffect(() => {
     const host = process.env.REACT_APP_BACKEND
@@ -38,10 +36,10 @@ const Admin = () => {
           <h3>(~2 minutes)</h3>
         </div>
       </div>}
-        <AdminForm />
-        <img className={style.Backdrop} src="https://plus.unsplash.com/premium_photo-1706838707667-9e3f75233938?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+        <GameMasterForm />
+        <img className={style.Backdrop} src="https://plus.unsplash.com/premium_photo-1713200810940-97c3b2fefefd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
     </div>
   )
 }
 
-export default Admin
+export default GameMasterLogin

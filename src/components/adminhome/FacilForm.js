@@ -1,55 +1,41 @@
 import React, { useEffect } from 'react'
-import style from './AdminForm.module.scss'
+import style from '../adminform/AdminForm.module.scss';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-const AdminForm = () => {
+
+const FacilForm = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const host=process.env.REACT_APP_BACKEND
 
-    let navigate = useNavigate();
-
-
-    const handleSubmit = (event) => {
+    const handleRegisterSubmit = (event) => {
+        const headers = {
+            headers:
+            {
+                'Authorization':localStorage.getItem('admin_token')
+            }
+        }
         event.preventDefault(); 
         const payload = {
             username: username,
-            password: password
+            password: password,
         }
-        toast.info('Logging in...');
-        axios.post(host+'/admin/login', payload).then((res) => {
-            localStorage.setItem('admin_token', 'Bearer ' + res.data.token);
+        axios.post(host+'/admin/create_facilitator', payload,headers).then((res) => {
             console.log(res.data);
-            toast.success('Login Successful!');
-            navigate('/admin_home')
+            toast.success('Registration Successful!');
         }).catch((err) => {
-            toast.error('Login Failed!');
+            console.log(err.response.data.message);
+            toast.error('Registration Failed!');
         }
         )
     }
-    
-        useEffect(()=>{
-            const headers={headers:
-                {
-                    'Authorization':localStorage.getItem('admin_token')
-                }}
-            axios.get(host+'/admin/check_token', headers)
-        .then(response => {
-            navigate('/admin_home')
-        })
-        .catch(error => {
-            console.log('There was an error!', error);
-        });
-        
-        },[])
 
 
   return (
-    <div className={style.Holder}>
+    <div className={` ${style.Holder} fixed  h-80 w-4 bg-white flex items-center justify-center z-[80]`}>
         
         <div className={style.Form}>
-            <h1>Admin Login</h1>
+            <h1>Facilitator registration</h1>
             <form id='loginForm' onSubmit={e=>{e.preventDefault()}}>
                 <div className={style.Input}>
                     <div htmlFor="username"className={style.InputLabel}>Username: </div>
@@ -59,8 +45,8 @@ const AdminForm = () => {
                     <div htmlFor="password"className={style.InputLabel}>Password: </div>
                     <input type="password" id="password" name="password" placeholder="Password" className={style.InputBox} value={password} onChange={e=>setPassword(e.target.value)}/>
                 </div>
-                <div className={style.Submit} onClick={handleSubmit}>
-                    Submit
+                <div className={style.Submit} onClick={handleRegisterSubmit}>
+                    Register
                 </div>
             </form>
         </div>
@@ -69,4 +55,4 @@ const AdminForm = () => {
   )
 }
 
-export default AdminForm;
+export default FacilForm;

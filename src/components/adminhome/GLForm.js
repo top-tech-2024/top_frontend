@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react'
-import style from './LoginForm.module.scss'
+import style from '../adminform/AdminForm.module.scss';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axiosInstance from '../../utils/axiosInstance';
-const LoginForm = () => {
+
+const GLForm = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [teamNames, setTeamNames] = React.useState([]) //['Hercules', 'Perceus', 'Zagreus'
     const [team, setTeam] = React.useState('');
     const host=process.env.REACT_APP_BACKEND
-    
-
-    let navigate = useNavigate();
 
     useEffect(() => {
         axios.get(host+'/team/get_all_team_names').then((res) => {
@@ -27,33 +23,20 @@ const LoginForm = () => {
         )
     },[])
 
-    const handleSubmit = (event) => {
-        event.preventDefault(); 
-        const payload = {
-            username: username,
-            password: password,
-            team_name: team
-        }
-        toast.info('Logging in...');
-        axios.post(host+'/user/login', payload).then((res) => {
-            localStorage.setItem('token', 'Bearer ' + res.data.token);
-            console.log(res.data);
-            toast.success('Login Successful!');
-            navigate('/home')
-        }).catch((err) => {
-            toast.error('Login Failed!');
-        }
-        )
-    }
-
     const handleRegisterSubmit = (event) => {
+        const headers = {
+            headers:
+            {
+                'Authorization':localStorage.getItem('admin_token')
+            }
+        }
         event.preventDefault(); 
         const payload = {
             username: username,
             password: password,
             team_name: team
         }
-        axios.post(host+'/user/register', payload).then((res) => {
+        axios.post(host+'/admin/create_gl', payload,headers).then((res) => {
             console.log(res.data);
             toast.success('Registration Successful!');
         }).catch((err) => {
@@ -63,29 +46,12 @@ const LoginForm = () => {
         )
     }
 
-    useEffect(()=>{
-        const token=localStorage.getItem('token')
-        const headers={headers:
-            {
-                'Authorization':token
-            }}
-        axios.get(host+'/user/check_token', headers)
-    .then(response => {
-        console.log(response.data.message);
-        navigate('/home')
-    })
-    .catch(error => {
-        console.log('Invalid or expired token')
-    });
-    
-    },[])
-
 
   return (
-    <div className={style.Holder}>
+    <div className={` ${style.Holder} fixed  h-80 w-4 bg-white flex items-center justify-center z-[80]`}>
         
         <div className={style.Form}>
-            <h1>Login</h1>
+            <h1>GL registration</h1>
             <form id='loginForm' onSubmit={e=>{e.preventDefault()}}>
                 <div className={style.Input}>
                     <div htmlFor="username"className={style.InputLabel}>Username: </div>
@@ -105,9 +71,6 @@ const LoginForm = () => {
                         }
                     </select>
                 </div>
-                <div className={style.Submit} onClick={handleSubmit}>
-                    Submit
-                </div>
                 <div className={style.Submit} onClick={handleRegisterSubmit}>
                     Register
                 </div>
@@ -118,4 +81,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm;
+export default GLForm;

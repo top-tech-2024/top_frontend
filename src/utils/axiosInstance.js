@@ -14,7 +14,7 @@ axiosInstance.interceptors.response.use(response => {
     // Any status codes outside the range of 2xx cause this function to trigger
     if (error.response && error.response.status === 401) {
         // Redirect to login page
-        window.location = '/TOP24_Demo_Frontend/'; // Or use useHistory hook for navigation in a React component
+        window.location = '/top_frontend/'; // Or use useHistory hook for navigation in a React component
     }
     return Promise.reject(error);
 });

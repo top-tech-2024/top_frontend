@@ -62,3 +62,40 @@
     }
 
 }
+
+.SpecialH3{
+    background-color: white;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    .SpecialSpan{
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: gray;
+        user-select: none;
+        opacity: 0.8;
+        &.Red{
+            color: red;
+        }
+        &.Green{
+            color: green;
+        }
+    
+    }
+}
+
+@media (max-width: 600px) {
+    .Holder{
+        .Center{
+            width: 90vw;
+            height: 90vh;
+            .GridHold{
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                user-select: none;
+            }
+        }
+    }
+}

@@ -98,6 +98,13 @@
         background-color: black;
         opacity: 0.4;
         user-select: none;
+        &.Pass{
+            background-color: rgb(22, 126, 22);
+        }
+        &.Fail{
+            background-color: rgb(168, 16, 16);
+        }
+
     }
 }
 
@@ -229,15 +236,6 @@
     &:hover{
         cursor: pointer;
         scale: 1.2;
-        animation: spin 1s ease-in-out 0s infinite forwards;
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(-360deg);
-            }
-        }
     }
     @keyframes appear {
         0% {
@@ -323,12 +321,12 @@
             transform: rotateX(45deg) scale(0.7);
             user-select: none;
             &:nth-last-child(3){
-                top: 5%;
+                top: 20%;
                 opacity: 0.6;
                 transform: rotateX(30deg) scale(0.8);
             }
             &:nth-last-child(2){
-                top: 15%;
+                top: 30%;
                 opacity: 0.6;
                 transform: rotateX(15deg);
                 transform: rotateX(30deg) scale(0.9);
@@ -340,7 +338,7 @@
                 &.fail{
                     background-color: red;
                 }
-                top: 30%;
+                top: 40%;
                 opacity: 1;
                 transform: rotateX(0deg);
                 animation: appear 0.5s ease-in-out 0s forwards;
@@ -369,7 +367,6 @@
             position: fixed;
             width: 100vw;
             height: 100vh;
-            background-color: black;
             opacity: 0.4;
             user-select: none;
         }
@@ -377,7 +374,7 @@
     
     .ChoiceHolder{
         position: fixed;
-        top:50%;
+        top:70%;
         font-size: 0.8rem;
         width: 100vw;
         height: 100vh;
@@ -457,7 +454,7 @@
     
     .Restart{
         position: fixed;
-        top: 50vh;
+        bottom: 50vh;
         right: 50vw;
         width: 50px;
         height: 50px;
@@ -473,15 +470,6 @@
         &:hover{
             cursor: pointer;
             scale: 1.2;
-            animation: spin 1s ease-in-out 0s infinite forwards;
-            @keyframes spin {
-                0% {
-                    transform: rotate(0deg);
-                }
-                100% {
-                    transform: rotate(-360deg);
-                }
-            }
         }
         @keyframes appear {
             0% {
@@ -495,7 +483,7 @@
     }
     .Switcher{
         position: fixed;
-        top: 70vh;
+        bottom: 10vh;
         right: 50vw;
         width: 50px;
         height: 50px;
