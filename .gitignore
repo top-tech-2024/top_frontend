@@ -1,8 +1,4 @@
 node_modules/
 
-.env
-.env.development
-.env.local
-.env.production
 build/
 src/pages/.DS_Store
