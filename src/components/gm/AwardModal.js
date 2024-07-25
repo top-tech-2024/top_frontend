@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AwardModal = ({
   awardPoints,
@@ -63,24 +65,35 @@ const AwardTeamModal = ({
   const handleSave = () => {
     //.put("/gm/set_game_points/{game_name}/{points}/{entity_name}"
     awardPoints(points);
-    // const headers = {
-    //     headers:
-    //     {
-    //         'Authorization':localStorage.getItem('gm_token')
-    //     }
-    // }
-    // const payload = {
-    //     points: points,
-    //     entity_name: teamName
-    // }
-    // axios.put(host+'/gm/set_game_points/'+gameCreated.game_name+'/'+points+'/'+teamName, payload,headers).then((res) => {
-    //     console.log(res.data);
-    //     toast.success('Points Awarded Successfully!');
-    // }).catch((err) => {
-    //     console.log(err.response.data.message);
-    //     toast.error('Points Award Failed!');
-    // }
-    // )
+    const headers = {
+      headers: {
+        Authorization: localStorage.getItem("gm_token"),
+      },
+    };
+    const payload = {
+      points: points,
+      entity_name: teamName,
+    };
+    axios
+      .put(
+        host +
+          "/gm/set_game_points/" +
+          gameCreated.game_name +
+          "/" +
+          points +
+          "/" +
+          teamName,
+        payload,
+        headers
+      )
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Points Awarded Successfully!");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        toast.error("Points Award Failed!");
+      });
   };
   return (
     <div className="fixed w-screen h-screen z-[70] flex flex-col justify-center items-center">
