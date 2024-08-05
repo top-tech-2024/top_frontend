@@ -27,6 +27,7 @@
     <h1>1) Live Booking System -> Slot Booking System</h1>
     <br />
     <h1>2) Live Leaderboard Below</h1>
+    <br />
     <h1>Points Earned</h1>
     <div id="table-container"></div>
     <script>
@@ -64,12 +65,15 @@
           const thead = document.createElement("thead");
           const headerRow = document.createElement("tr");
           Object.keys(data[0]).forEach((key) => {
-            const th = document.createElement("th");
-            th.textContent = key;
-            th.style.border = "1px solid black";
-            th.style.padding = "8px";
-            th.style.backgroundColor = "#f2f2f2";
-            headerRow.appendChild(th);
+            if (key !== "Points") {
+              // Exclude 'Points' column from the header
+              const th = document.createElement("th");
+              th.textContent = key;
+              th.style.border = "1px solid black";
+              th.style.padding = "8px";
+              th.style.backgroundColor = "#f2f2f2";
+              headerRow.appendChild(th);
+            }
           });
           thead.appendChild(headerRow);
           table.appendChild(thead);
@@ -78,12 +82,15 @@
           const tbody = document.createElement("tbody");
           data.forEach((row) => {
             const tr = document.createElement("tr");
-            Object.values(row).forEach((cell) => {
-              const td = document.createElement("td");
-              td.textContent = cell;
-              td.style.border = "1px solid black";
-              td.style.padding = "8px";
-              tr.appendChild(td);
+            Object.keys(row).forEach((key) => {
+              if (key !== "Points") {
+                // Exclude 'Points' column from the body
+                const td = document.createElement("td");
+                td.textContent = row[key];
+                td.style.border = "1px solid black";
+                td.style.padding = "8px";
+                tr.appendChild(td);
+              }
             });
             tbody.appendChild(tr);
           });
