@@ -6,30 +6,120 @@
     <title>TOP'24 Leaderboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <style>
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 2em;
+        color: #2c3e50;
+        text-shadow: 1px 1px 2px #aaa;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      #content-container {
+        width: 80%;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
+        margin-top: 20px;
       }
+
       th,
       td {
-        border: 1px solid black;
-        padding: 8px;
+        border: 1px solid #ddd;
+        padding: 10px;
         text-align: left;
       }
+
       th {
-        background-color: #f2f2f2;
+        background-color: #2c3e50;
+        color: #ffffff;
+        font-weight: normal;
+      }
+
+      td {
+        background-color: #f9f9f9;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f0f0f5;
+      }
+
+      tr:hover {
+        background-color: #e0e0e5;
+      }
+
+      #button-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      button {
+        background-color: #2c3e50;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #34495e;
+      }
+
+      .hidden {
+        display: none;
       }
     </style>
   </head>
+
   <body>
-    <h1>Updates:</h1>
-    <br />
-    <h1>1) Live Booking System -> Slot Booking System</h1>
-    <br />
-    <h1>2) Live Leaderboard Below</h1>
-    <br />
-    <h1>Points Earned</h1>
-    <div id="table-container"></div>
+    <h1>TOP'24 Dashboard</h1>
+
+    <div id="button-container">
+      <button onclick="showLeaderboard()">Leaderboard</button>
+      <button onclick="showUpdates()">Updates</button>
+    </div>
+
+    <div id="content-container">
+      <div id="leaderboard-section">
+        <h2>Live Leaderboard</h2>
+        <div id="table-container"></div>
+      </div>
+      <div id="updates-section" class="hidden">
+        <h2>Updates</h2>
+        <ul>
+          <li>Update 1: Live Leaderboard Ready (abit of delay).</li>
+          <li>
+            Update 2: Removed Live Booking System from website. Use Slot Booking
+            instead. Reason: too many sub ogs not being snatch bookings (54 ogs
+            » only 19 games).
+          </li>
+          <!-- Add more updates as needed -->
+        </ul>
+      </div>
+    </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const csvUrl =
@@ -42,53 +132,39 @@
               header: true,
               dynamicTyping: true,
             });
-            console.log(parsedData.data); // Debugging: Check parsed data
             sortAndRenderTable(parsedData.data);
           })
           .catch((error) => console.error("Error fetching CSV data:", error));
 
         function sortAndRenderTable(data) {
-          // Ensure 'Points' is parsed as a number
           data.forEach((row) => {
-            row.Points = +row.Points || 0; // Convert to number or default to 0
+            row.Points = +row.Points || 0;
           });
 
-          // Sort data by points in descending order
           data.sort((a, b) => b.Points - a.Points);
 
           const tableContainer = document.getElementById("table-container");
           const table = document.createElement("table");
-          table.style.width = "100%";
-          table.style.borderCollapse = "collapse";
 
-          // Create table header
           const thead = document.createElement("thead");
           const headerRow = document.createElement("tr");
           Object.keys(data[0]).forEach((key) => {
             if (key !== "Points") {
-              // Exclude 'Points' column from the header
               const th = document.createElement("th");
               th.textContent = key;
-              th.style.border = "1px solid black";
-              th.style.padding = "8px";
-              th.style.backgroundColor = "#f2f2f2";
               headerRow.appendChild(th);
             }
           });
           thead.appendChild(headerRow);
           table.appendChild(thead);
 
-          // Create table body
           const tbody = document.createElement("tbody");
           data.forEach((row) => {
             const tr = document.createElement("tr");
             Object.keys(row).forEach((key) => {
               if (key !== "Points") {
-                // Exclude 'Points' column from the body
                 const td = document.createElement("td");
                 td.textContent = row[key];
-                td.style.border = "1px solid black";
-                td.style.padding = "8px";
                 tr.appendChild(td);
               }
             });
@@ -99,6 +175,19 @@
           tableContainer.appendChild(table);
         }
       });
+
+      function showLeaderboard() {
+        document
+          .getElementById("leaderboard-section")
+          .classList.remove("hidden");
+        document.getElementById("updates-section").classList.add("hidden");
+      }
+
+      function showUpdates() {
+        document.getElementById("leaderboard-section").classList.add("hidden");
+        document.getElementById("updates-section").classList.remove("hidden");
+      }
     </script>
   </body>
 </html>
+
