@@ -18,11 +18,14 @@
           .then((response) => response.text())
           .then((csvText) => {
             const parsedData = Papa.parse(csvText, { header: true });
-            renderTable(parsedData.data);
+            sortAndRenderTable(parsedData.data);
           })
           .catch((error) => console.error("Error fetching CSV data:", error));
 
-        function renderTable(data) {
+        function sortAndRenderTable(data) {
+          // Sort data by points in descending order
+          data.sort((a, b) => b.Points - a.Points);
+
           const tableContainer = document.getElementById("table-container");
           const table = document.createElement("table");
           table.style.width = "100%";
