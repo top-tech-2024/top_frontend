@@ -4,11 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TOP'24 Leaderboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
   </head>
   <body>
     <h1>Points Earned</h1>
-    <iframe
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTq2nY0F4uwD0biBDXX5PPMmQoSiNDLyMHNzyStmX5WS2m-TVctTs63zFpyWJdjT6eATjnR7XXu-L6M/pub?gid=0&single=true&output=csv"
-    ></iframe>
+    <div id="table-container"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const csvUrl =
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vTq2nY0F4uwD0biBDXX5PPMmQoSiNDLyMHNzyStmX5WS2m-TVctTs63zFpyWJdjT6eATjnR7XXu-L6M/pub?gid=0&single=true&output=csv";
+
+        fetch(csvUrl)
+          .then((response) => response.text())
+          .then((csvText) => {
+            const parsedData = Papa.parse(csvText, { header: true });
+            renderTable(parsedData.data);
+          })
+          .catch((error) => console.error("Error fetching CSV data:", error));
+
+        function renderTable(data) {
+          const tableContainer = document.getElementById("table-container");
+          const table = document.createElement("table");
+          table.style.width = "100%";
+          table.style.borderCollapse = "collapse";
+
+          // Create table header
+          const thead = document.createElement("thead");
+          const headerRow = document.createElement("tr");
+          Object.keys(data[0]).forEach((key) => {
+            const th = document.createElement("th");
+            th.textContent = key;
+            th.style.border = "1px solid black";
+            th.style.padding = "8px";
+            th.style.backgroundColor = "#f2f2f2";
+            headerRow.appendChild(th);
+          });
+          thead.appendChild(headerRow);
+          table.appendChild(thead);
+
+          // Create table body
+          const tbody = document.createElement("tbody");
+          data.forEach((row) => {
+            const tr = document.createElement("tr");
+            Object.values(row).forEach((cell) => {
+              const td = document.createElement("td");
+              td.textContent = cell;
+              td.style.border = "1px solid black";
+              td.style.padding = "8px";
+              tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+          });
+          table.appendChild(tbody);
+
+          tableContainer.appendChild(table);
+        }
+      });
+    </script>
   </body>
 </html>
