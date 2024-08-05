@@ -5,8 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TOP'24 Leaderboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
   </head>
   <body>
+    <h1>Updates:</h1>
+    <br />
+    <h1>1) Live Booking System -> Slot Booking System</h1>
+    <br />
+    <h1>2) Live Leaderboard Below</h1>
     <h1>Points Earned</h1>
     <div id="table-container"></div>
     <script>
@@ -17,12 +37,21 @@
         fetch(csvUrl)
           .then((response) => response.text())
           .then((csvText) => {
-            const parsedData = Papa.parse(csvText, { header: true });
+            const parsedData = Papa.parse(csvText, {
+              header: true,
+              dynamicTyping: true,
+            });
+            console.log(parsedData.data); // Debugging: Check parsed data
             sortAndRenderTable(parsedData.data);
           })
           .catch((error) => console.error("Error fetching CSV data:", error));
 
         function sortAndRenderTable(data) {
+          // Ensure 'Points' is parsed as a number
+          data.forEach((row) => {
+            row.Points = +row.Points || 0; // Convert to number or default to 0
+          });
+
           // Sort data by points in descending order
           data.sort((a, b) => b.Points - a.Points);
 
